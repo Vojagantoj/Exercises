@@ -20,10 +20,14 @@ $ python task_5_1c.py
 
 Ограничение: нельзя изменять словарь london_co.
 
-Все задания надо выполнять используя только пройденные темы. То есть эту задачу можно
+Все задания надо выполнk = 'Введите имя параметра ({}):'.format((str(list((london_co[router]).keys()))).strip('[]'))
+param = input(k)
+m = london_co[router]
+print(m.get(param, 'Такого параметра нет'))
+print(london_co[router][param])ять используя только пройденные темы. То есть эту задачу можно
 решить без использования условия if.
 """
-
+router = input('Введите hostname')
 london_co = {
     "r1": {
         "location": "21 New Globe Walk",
@@ -49,3 +53,7 @@ london_co = {
         "routing": True,
     },
 }
+k = 'Введите имя параметра ({}):'.format((str(list((london_co[router]).keys()))).strip('[]'))
+param = input(k)
+m = london_co[router]
+print(m.get(param, 'Такого параметра нет'))
