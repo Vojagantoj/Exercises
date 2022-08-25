@@ -11,17 +11,26 @@ VLANа или списка VLANов:
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 То есть эту задачу можно решить без использования условия if и циклов for/while.
 """
+rezhim = input('Введите режим работы интерфейса:')
+interface = input('Введите тип и номер интерфейса:')
+vlan_template = {
+    "access": "Введите номер VLAN:",
+    "trunk": "Введите разрешенные VLANы:"
+}
+vlan = input(vlan_template[rezhim])
 
-access_template = [
-    "switchport mode access",
-    "switchport access vlan {}",
-    "switchport nonegotiate",
-    "spanning-tree portfast",
-    "spanning-tree bpduguard enable",
-]
 
-trunk_template = [
-    "switchport trunk encapsulation dot1q",
-    "switchport mode trunk",
-    "switchport trunk allowed vlan {}",
-]
+port_template = {
+    "access": (
+        "switchport mode access",
+        "switchport access vlan {}",
+        "switchport nonegotiate",
+        "spanning-tree portfast",
+        "spanning-tree bpduguard enable"),
+    "trunk": (
+        "switchport trunk encapsulation dot1q",
+        "switchport mode trunk",
+        "switchport trunk allowed vlan {}")
+}
+print('interface {}'.format(interface))
+print('\n'.join(port_template[rezhim]).format(vlan))
