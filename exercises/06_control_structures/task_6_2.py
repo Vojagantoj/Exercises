@@ -12,3 +12,16 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+p = input('Введите адрес в формате x.x.x.x: ')
+m = p.split('.')
+k = int(m[0])
+if 1 <= k <= 223:
+    print('unicast')
+elif 224 <= k <= 239:
+    print('multicast')
+elif int(m[0]) == int(m[1]) == int(m[2]) == int(m[3]) == 255:
+    print('local broadcast')
+elif int(m[0]) == int(m[1]) == int(m[2]) == int(m[3]) == 0:
+    print('unassigned')
+else:
+    print('unused')
