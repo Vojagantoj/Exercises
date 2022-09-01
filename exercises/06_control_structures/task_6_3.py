@@ -66,6 +66,7 @@ trunk = {
 }
 
 for intf, vlan in trunk.items():
+    print("interface FastEthernet" + intf)
     if vlan[0] == "add":
         vlan.remove('add')
         vlans = ('add' + ' ' + ','.join(vlan))
