@@ -16,4 +16,27 @@
 
 """
 
+from sys import argv
+
 ignore = ["duplex", "alias", "configuration"]
+
+f = open('config_sw1.txt')
+p = f.read().split('\n')
+i = 0
+j = 0
+k = len(p)
+while i < k:
+    for  j in range(3):
+        if ignore[j] in p[i]:
+            p.remove(p[i])
+            i -= 1
+            break
+    i += 1
+    k = len(p)
+i = 0
+while i < len(p):
+    if p[i] != '!' and p[i].startswith('!') == False:
+        print(p[i])
+        i+=1
+    else:
+        i+=1
