@@ -15,5 +15,26 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+from sys import argv
 
-ignore = ["duplex", "alias", "configuration"]
+ignore = ["duplex", "alias", "configuration", '!']
+
+f = open(argv[1])
+p = f.read().split('\n')
+i = 0
+j = 0
+k = len(p)
+while i < k:
+    for  j in range(4):
+        if ignore[j] in p[i]:
+            p.remove(p[i])
+            i -= 1
+            break
+    i += 1
+    k = len(p)
+p2 = []
+for line in p:
+    p2.append(line + '\n')
+f = open(argv[2], 'w')
+f.writelines(p2)
+f.close()

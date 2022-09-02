@@ -20,7 +20,7 @@ from sys import argv
 
 ignore = ["duplex", "alias", "configuration"]
 
-f = open('config_sw1.txt')
+f = open(argv[1])
 p = f.read().split('\n')
 i = 0
 j = 0
