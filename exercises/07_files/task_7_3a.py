@@ -40,3 +40,21 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+line2 = []
+i = 0
+with open('CAM_table.txt') as f:
+    for line in f:
+        line = line.split()
+        if len(line) == 0:
+            continue
+        if line[0].isdigit() == True:
+            line[0] = int(line[0])
+            line2 += [line]
+line3 = sorted(line2)
+while i < len(line3):
+    line3[i][0] = str(line3[i][0])
+    i += 1
+i = 0
+while i < len(line3):
+    print('{:9} {:19}{}'.format(line3[i][0], line3[i][1], line3[i][3]))
+    i += 1
