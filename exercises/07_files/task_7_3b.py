@@ -43,6 +43,6 @@ h = int(len(value)/2)
 if h == 1:
     print('{:9} {:19}{}'.format(vlan, value[0], value[1]))
 else:
-    while i <= h:
+    while i < 2*h:
         print('{:9} {:19}{}'.format(vlan, value[i], value[i+1]))
         i+= 2
