@@ -3,7 +3,7 @@
 Задание 9.1
 
 Создать функцию generate_access_config, которая генерирует конфигурацию
-для access-портов.
+для access-портов.kl
 
 Функция ожидает такие аргументы:
 
@@ -36,7 +36,7 @@
 'switchport nonegotiate',
 'spanning-tree portfast',
 'spanning-tree bpduguard enable',
-...]
+...]generate_access_config(access_config, access_mode_template)
 
 Проверить работу функции на примере словаря access_config
 и списка команд access_mode_template.
@@ -64,7 +64,6 @@ access_config_2 = {
     "FastEthernet0/09": 107,
 }
 
-
 def generate_access_config(intf_vlan_mapping, access_template):
     """
     intf_vlan_mapping - словарь с соответствием интерфейс-VLAN такого вида:
@@ -75,3 +74,21 @@ def generate_access_config(intf_vlan_mapping, access_template):
 
     Возвращает список всех портов в режиме access с конфигурацией на основе шаблона
     """
+    m = []
+    for data in intf_vlan_mapping:
+        y = intf_vlan_mapping[data]
+        j = 'interface' + ' ' + data
+        for n in access_template:
+            if n.endswith('vlan'):
+                k = access_template.index(n)
+                y = str(y)
+                t = n + ' ' + y
+                l = access_template.copy()
+                l.remove(n)
+                l.insert(k , t)
+                l.insert(0 , j)
+                m.extend(l)
+                n = str()
+                break
+        continue
+    return m
