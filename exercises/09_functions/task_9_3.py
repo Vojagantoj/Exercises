@@ -53,13 +53,3 @@ def get_int_vlan_map(config_filename):
     result = tuple(result)
     return result
 print(get_int_vlan_map('config_sw1.txt'))
-
-
-
-
-#
-
-
-#        while i < len(line):
-#            print('{:22}{}'.format(parametr[i], line[i].strip('[]').strip(',')))
-#            i += 1
