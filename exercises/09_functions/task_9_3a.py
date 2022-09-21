@@ -25,3 +25,42 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+def get_int_vlan_map(config_filename):
+    h = {}
+    t = {}
+    with open(config_filename) as f:
+        for line in f:
+            if line.startswith('interface'):
+                line = line.split()
+                j = line[1]
+                continue
+            else:
+                line = line.split()
+                if len(line) > 2 and line[-1] == 'access':
+                    line1 = line
+                elif len(line) > 2 and line[-2] == 'vlan' and line[1] == 'access':
+                    k = int(line[-1])
+                    m = dict([(j,k)])
+                    h.update(m)
+                    line1 = [1]
+                    continue
+                elif len(line) > 2 and line[-2] == 'vlan' and line[1] == 'trunk':
+                    k = line[-1]
+                    sh = k.split(',')
+                    i = 0
+                    while i < len(sh):
+                        sh[i] = int(sh[i])
+                        i += 1
+                    m = dict([(j,sh)])
+                    t.update(m)
+                    continue
+                elif len(line) >= 2 and line[0] == 'duplex' and line1[-1] == 'access':
+                    m = dict([(j,1)])
+                    h.update(m)
+                    line1 = [1]
+    result = []
+    result.append(h)
+    result.append(t)
+    result = tuple(result)
+    return result
+print(get_int_vlan_map('config_sw2.txt'))
